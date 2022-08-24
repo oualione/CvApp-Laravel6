@@ -1,0 +1,55 @@
+@extends('layouts.app')
+
+
+
+@section('content')
+
+<section>
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h3>DASHBOARD</h3>
+		</div>
+	</div>
+</section>
+<section class="form-section">
+	<div class="container">
+		<div class="col-md-12">
+			<form action="{{url('cvs/'.$cv->id)}}" method="POST" enctype="multipart/form-data">
+            		<input type="hidden" name="_method" value="PUT">
+            		@csrf
+				  <div class="form-group">
+				    <label for="exampleFormControlInput1">Title</label>
+				    <input type="text" class="form-control @error('title') is-invalid @enderror" id="exampleFormControlInput1" value="{{$cv->title}}" name="title">
+				    @error('title')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    </div>
+
+				  <div class="form-group">
+				    <label for="exampleFormControlTextarea1">Presentation</label>
+				    <textarea class="form-control @error('presentation') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3"  name="presentation">{{$cv->presentation}}</textarea>
+
+				   @error('presentation')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    </div>
+
+                  <div class="form-group">
+					    <label for="exampleFormControlFile1">Photo</label>
+					    <input type="file" class="form-control-file" name="photo" id="exampleFormControlFile1">
+			
+					 </div>
+
+				  <div class="form-group">
+				    <input type="submit" class="btn btn-success"  value="UPDATE"></textarea>
+				  </div>
+</form>
+		</div>	
+	</div>
+</section>
+
+@endsection
